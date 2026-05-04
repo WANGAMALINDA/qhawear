@@ -1,0 +1,25 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+.DS_Store?
+
+# VSCode / IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Images cache
+image_cache/
+
+# Project-specific ignores (none needed for this static site)
