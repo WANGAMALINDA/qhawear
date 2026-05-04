@@ -267,7 +267,15 @@
         }
 
         /* Footer */
-        .footer-grid { display: flex; flex-direction: column; gap: 20px; margin: 25px 0; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 40px; 
+            margin: 25px 0; 
+            max-width: 900px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
         .footer-contact { text-align: center; }
 
         /* Cart Sidebar Mobile Fullscreen */
@@ -437,7 +445,7 @@
                 <p>Built on identity, belonging, and authenticity. This is more than clothing — it is a reflection of those who move with purpose.</p>
                 <a href="#shop" class="btn-white" style="background: black; color:white; border:none;">EXPLORE PIECES →</a>
             </div>
-            <div style="text-align: right;">
+<div style="text-align: right;">
                 <img src="Assets/Logo-removebg.png" alt="QHAWEAR Logo" class="hero-logo-main">
             </div>
         </div>
