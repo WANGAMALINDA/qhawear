@@ -1,14 +1,26 @@
-# Mobile Layout Improvement Plan - QHAWEAR
+# QHAWEAR Cart & Checkout Enhancement TODO
 
-## Status: Updated
+## Plan Breakdown & Progress
 
-**1. [DONE] Understand current code - read index.html**
-**2. [DONE] Get plan approval (implicit via test request)**
-**3. [DONE] Created TODO.md for tracking**
-**4. [DONE] Created mobile-improved.html prototype**
-**5. [DONE] Local test: start mobile-improved.html**
-**6. [ ] Replace index.html with mobile version**
-**7. [ ] Commit & push**
-**8. [ ] Verify GitHub Pages mobile view**
+✅ **Step 1**: Create TODO.md [DONE]
 
-**Next:** Test prototype. If approved, replace index.html.
+✅ **Step 1**: Create TODO.md [DONE]
+
+✅ **Step 2**: Update JavaScript [DONE]
+- Extended cart item structure (add size, unique index)
+- Modified addToCart() with size selection (XS-XXL dropdown)
+- Updated renderCart() with size display + remove button per item
+- Updated processCheckout() with delivery address + email (mailto: wangamalinda4@gmail.com)
+- Added helpers (updateCartCount, calculateTotal, removeFromCart)
+
+✅ **Step 3**: Update HTML [DONE]
+- Added delivery address input to cart sidebar
+- Changed "WHATSAPP TO ORDER" to "ORDER" button (opens cart)
+
+**⏳ Step 4**: Minor CSS for new elements (size select, remove btn)
+
+**⏳ Step 5**: Test functionality
+
+**⏳ Step 6**: Final update + complete
+
+Last updated: Steps 2-3 complete
