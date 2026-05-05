@@ -80,6 +80,72 @@
 
         .nav-links a:hover { color: white; }
 
+        /* Hamburger Menu */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger-btn span {
+            width: 25px;
+            height: 2px;
+            margin:auto;
+            background: white;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .hamburger-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background: var(--black);
+            z-index: 1999;
+            padding: 40px;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #mobile-menu.active {
+            display: flex;
+        }
+
+        #mobile-menu a {
+            color: #ccc;
+            text-decoration: none;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        #mobile-menu a:hover {
+            color: white;
+        }
+
         /* Column 3: Socials + Cart on Right */
         .nav-right-group {
             display: flex;
@@ -196,8 +262,10 @@
         @media (max-width: 1000px) {
             header.site-nav { padding: 0 20px; }
             .nav-links { display: none; }
+            .hamburger-btn { display: flex; }
             .logo-text { flex: 1; }
-            .nav-right-group { flex: 1; }
+            .nav-right-group { flex: 1; justify-content: flex-end; }
+            .cart-btn-wrapper { display: none; }
             .grid-2, .values-grid, .product-grid, .order-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -218,6 +286,13 @@
                 <a href="#footer">Contact</a>
             </nav>
 
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <!-- Right: Socials + Cart -->
             <div class="nav-right-group">
                 <div class="nav-socials-icons">
@@ -234,6 +309,15 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu">
+        <a href="#shop" onclick="closeMobileMenu()">Shop</a>
+        <a href="#manifesto" onclick="closeMobileMenu()">About</a>
+        <a href="#order" onclick="closeMobileMenu()">How to Order</a>
+        <a href="#footer" onclick="closeMobileMenu()">Contact</a>
+        <a href="#" onclick="toggleCart(); closeMobileMenu(); return false;" style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-bag-shopping"></i><span id="cart-count-mobile">MY CART (0)</span></a>
+    </nav>
 
     <!-- Hero -->
     <section class="container hero">
@@ -283,15 +367,15 @@
                 <div class="product-img-wrapper"><img src="Assets/Cotton/t10.jpeg"></div>
                 <div style="padding: 0 20px; text-align: center;">
                     <h3 class="heavy-title" style="font-size: 16px;">Cotton T-Shirt</h3>
-                    <p class="mono" style="color:var(--red);">R375.00</p>
+                    <p class="mono" style="color:var(--red);">R400.00</p>
                     <button class="add-to-cart-btn" onclick="openCottonCollection()">SHOP COTTON</button>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-img-wrapper"><img src="Assets/Acid wash/t1.jpeg"></div>
+                <div class="product-img-wrapper"><img src="Assets/Acid wash/t12.jpeg"></div>
                 <div style="padding: 0 20px; text-align: center;">
                     <h3 class="heavy-title" style="font-size: 16px;">Acid Wash T-Shirt</h3>
-                    <p class="mono" style="color:var(--red);">R425.00</p>
+                    <p class="mono" style="color:var(--red);">R500.00</p>
                     <button class="add-to-cart-btn" onclick="openAcidWashCollection()">SHOP ACID WASH</button>
                 </div>
             </div>
@@ -301,6 +385,22 @@
                     <h3 class="heavy-title" style="font-size: 16px;">Winter Hoodie</h3>
                     <p class="mono" style="color:var(--red);">R650.00</p>
                     <button class="add-to-cart-btn" onclick="openHoodieCollection()">SHOP HOODIES</button>
+                </div>
+            </div>
+                    <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/neckless/round necks cream.jpeg"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Round Neck</h3>
+                    <p class="mono" style="color:var(--red);">R500.00</p>
+                    <button class="add-to-cart-btn" onclick="openRoundneckCollection()">SHOP ROUND NECK</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/signature/t16.jpeg"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Signature Series</h3>
+                    <p class="mono" style="color:var(--red);">R650.00</p>
+                    <button class="add-to-cart-btn" onclick="openSignatureCollection()">SHOP SIGNATURE</button>
                 </div>
             </div>
             <div class="product-card">
@@ -317,6 +417,16 @@
                     <h3 class="heavy-title" style="font-size: 16px;">Socks</h3>
                     <p class="mono" style="color:var(--red);">R120.00</p>
                     <button class="add-to-cart-btn" onclick="openSocksCollection()">SHOP SOCKS</button>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/trackpants/pants.jpeg"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Sweat Pants</h3>
+                    <p class="mono" style="color:var(--red);">COMING SOON</p>
+                    <button class="add-to-cart-btn" style="cursor: not-allowed; opacity: 0.5;" disabled>COMING SOON</button>
                 </div>
             </div>
         </div>
@@ -414,7 +524,29 @@
             <div class="product-grid" id="socks-grid"></div>
         </div>
     </div>
+    <div id="sweatpants-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; overflow-y:auto;\">
+        <div style="padding:40px; max-width:1400px; margin:40px auto;">
+            <span style="cursor:pointer; font-size:28px; color:white; float:right;" onclick="closeSweatpantsCollection()">✕</span>
+            <h2 style="color:white; font-size:48px; margin-bottom:40px; font-family:'Archivo Black', sans-serif;">SWEAT PANTS COLLECTION</h2>
+            <div class="product-grid" id="sweatpants-grid"></div>
+        </div>
+    </div>
 
+    <div id="signature-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; overflow-y:auto;">
+        <div style="padding:40px; max-width:1400px; margin:40px auto;">
+            <span style="cursor:pointer; font-size:28px; color:white; float:right;" onclick="closeSignatureCollection()">✕</span>
+            <h2 style="color:white; font-size:48px; margin-bottom:40px; font-family:'Archivo Black', sans-serif;">SIGNATURE COLLECTION</h2>
+            <div class="product-grid" id="signature-grid"></div>
+        </div>
+    </div>
+
+    <div id="roundneck-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; overflow-y:auto;">
+        <div style="padding:40px; max-width:1400px; margin:40px auto;">
+            <span style="cursor:pointer; font-size:28px; color:white; float:right;" onclick="closeRoundneckCollection()">✕</span>
+            <h2 style="color:white; font-size:48px; margin-bottom:40px; font-family:'Archivo Black', sans-serif;">ROUND NECK COLLECTION</h2>
+            <div class="product-grid" id="roundneck-grid"></div>
+        </div>
+    </div>
     <!-- Cart Overlay -->
     <div id="cart-sidebar">
         <div class="cart-header">
@@ -436,6 +568,21 @@
 let cart = [];
 let nextItemId = 0;
 
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const btn = document.querySelector('.hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const btn = document.querySelector('.hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.classList.remove('active');
+            menu.classList.remove('active');
+        }
+
         // Scroll Animation
         function checkScroll() {
             const elements = document.querySelectorAll('.fade-in-section');
@@ -450,25 +597,43 @@ let nextItemId = 0;
 
         // Collection Data
         const acidwashItems = [
-            { name: 'Acid Wash V2 Cream', image: 'Assets/Acid wash/t7 v3 green.jpeg', price: 425 },
-            { name: 'Acid Wash V5 Khaki', image: 'Assets/Acid wash/v5 khaki.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Black', image: 'Assets/Acid wash/t7 v3 black.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Red', image: 'Assets/Acid wash/t7 v3 red.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Cream', image: 'Assets/Acid wash/t7 v3 cream.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Grey', image: 'Assets/Acid wash/v4 grey.jpeg', price: 425 },
+            { name: 'Acid Wash V2 Cream', image: 'Assets/Acid wash/t7 v3 green.jpeg', price: 500 },
+            { name: 'Acid Wash V5 Khaki', image: 'Assets/Acid wash/v5 khaki.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Black', image: 'Assets/Acid wash/t7 v3 black.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Red', image: 'Assets/Acid wash/t7 v3 red.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Cream', image: 'Assets/Acid wash/t7 v3 cream.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Grey', image: 'Assets/Acid wash/v4 grey.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Grey', image: 'Assets/Acid wash/ t7 v3 white.jpeg', price: 500 },
         ];
 
         const cottonItems = [
-            { name: 'Cotton V1', image: 'Assets/Cotton/co.png', price: 375 },
-            { name: 'Cotton V2', image: 'Assets/Cotton/t2.jpeg', price: 375 },
-            { name: 'Cotton V3', image: 'Assets/Cotton/t3.jpeg', price: 375 },
-            { name: 'Cotton V2-Alt', image: 'Assets/Cotton/t13.jpeg', price: 375 },
-            { name: 'Cotton V3-Alt', image: 'Assets/Cotton/t17.jpeg', price: 375 },
+            { name: 'Cotton V1', image: 'Assets/Cotton/co.png', price: 400 },
+            { name: 'Cotton V3', image: 'Assets/Cotton/t3.jpeg', price: 400 },
+            { name: 'Cotton V3-Alt', image: 'Assets/Cotton/t17.jpeg', price: 400 },
         ];
 
         const hoodieItems = [{ name: 'Hoodie V1', image: 'Assets/Jersey/WhatsApp Image 2026-05-04 at 08.51.23.jpeg', price: 650 }];
+
         const capItems = [{ name: 'Cap V1', image: 'Assets/Cap/cap1.jpeg', price: 250 }];
+
         const socksItems = [{ name: 'Socks V1', image: 'Assets/socks/socks.png', price: 120 }];
+
+        const sweatpantsItems = [{ name: 'Sweat Pants - Coming Soon', image: 'Assets/trackpants/pants.jpeg', price: 0 }];
+
+        const signatureItems = [
+            { name: 'Signature V1 Orange', image: 'Assets/signature/t16.jpeg', price: 650 },
+            { name: 'Signature V1 Black', image: 'Assets/signature/Signature V1 black.jpeg', price: 650 },
+            { name: 'Signature V1 Cream', image: 'Assets/signature/Signature V1 cream.jpeg', price: 650 },
+            { name: 'Signature V1 White', image: 'Assets/signature/Signature V1 white.jpeg', price: 650 },
+            { name: 'Signature V1 Red', image: 'Assets/signature/Signature V1 red.jpeg', price: 650 },
+            { name: 'Signature V1 Grey', image: 'Assets/signature/t2.jpeg', price: 650 },
+        ];
+
+        const roundneckItems = [
+            { name: 'Round Neck', image: 'Assets/neckless/round neck red.jpeg', price: 500 },
+            { name: 'Round Neck', image: 'Assets/neckless/round necks cream.jpeg', price: 500 },
+
+        ];
 
         // Modal Logic
         function openAcidWashCollection() { renderCollection('acidwash-grid', acidwashItems); document.getElementById('acidwash-modal').style.display = 'block'; }
@@ -480,16 +645,26 @@ let nextItemId = 0;
         function openHoodieCollection() { renderCollection('hoodie-grid', hoodieItems); document.getElementById('hoodie-modal').style.display = 'block'; }
         function closeHoodieCollection() { document.getElementById('hoodie-modal').style.display = 'none'; }
 
-        function openCapCollection() { renderCollection('caps-grid', capItems); document.getElementById('caps-modal').style.display = 'block'; }
+        function openCapCollection() { renderCollection('caps-grid', capItems, ['One Size']); document.getElementById('caps-modal').style.display = 'block'; }
         function closeCapCollection() { document.getElementById('caps-modal').style.display = 'none'; }
 
-        function openSocksCollection() { renderCollection('socks-grid', socksItems); document.getElementById('socks-modal').style.display = 'block'; }
+        function openSocksCollection() { renderCollection('socks-grid', socksItems, ['One Size']); document.getElementById('socks-modal').style.display = 'block'; }
         function closeSocksCollection() { document.getElementById('socks-modal').style.display = 'none'; }
 
-        function renderCollection(gridId, items) {
+        function openSweatpantsCollection() { renderCollection('sweatpants-grid', sweatpantsItems, ['One Size']); document.getElementById('sweatpants-modal').style.display = 'block'; }
+        function closeSweatpantsCollection() { document.getElementById('sweatpants-modal').style.display = 'none'; }
+
+        function openSignatureCollection() { renderCollection('signature-grid', signatureItems); document.getElementById('signature-modal').style.display = 'block'; }
+        function closeSignatureCollection() { document.getElementById('signature-modal').style.display = 'none'; }
+
+        function openRoundneckCollection() { renderCollection('roundneck-grid', roundneckItems); document.getElementById('roundneck-modal').style.display = 'block'; }
+        function closeRoundneckCollection() { document.getElementById('roundneck-modal').style.display = 'none'; }
+
+        function renderCollection(gridId, items, sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL']) {
             const grid = document.getElementById(gridId);
             grid.innerHTML = '';
             items.forEach(item => {
+                let sizeOptions = sizes.map(size => `<option value="${size}">${size}</option>`).join('');
                 grid.innerHTML += `
                     <div class="product-card" style="background:white;">
                         <div class="product-img-wrapper"><img src="${item.image}"></div>
@@ -497,13 +672,8 @@ let nextItemId = 0;
                             <h3 class="heavy-title" style="font-size: 14px;">${item.name}</h3>
                             <p class="mono" style="color:var(--red);">R${item.price}</p>
                             <select id="size-select-${nextItemId}" class="size-select" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; font-family:'Roboto Mono', monospace; font-size:12px;">
-                                <option value="">Select Size</option>
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="XXL">XXL</option>
+                                ${sizes.length === 1 ? '' : '<option value="">Select Size</option>'}
+                                ${sizeOptions}
                             </select>
                             <button class="add-to-cart-btn" onclick="addToCart('${item.name}', ${item.price}, this.previousElementSibling)">ADD TO CART</button>
                         </div>
@@ -536,6 +706,10 @@ let nextItemId = 0;
 
         function updateCartCount() {
             document.getElementById('cart-count').innerText = `MY CART (${cart.length})`;
+            const mobileCartEl = document.getElementById('cart-count-mobile');
+            if (mobileCartEl) {
+                mobileCartEl.innerText = `MY CART (${cart.length})`;
+            }
         }
 
         function calculateTotal() {
@@ -571,12 +745,40 @@ let nextItemId = 0;
                 alert("Please fill all details (name, phone, delivery address) and add items."); 
                 return; 
             }
-            let itemsList = cart.map(i => `• ${i.name} (Size: ${i.size}) - R${i.price}`).join('\\n');
+            
+            let itemsList = cart.map(i => `• ${i.name} (Size: ${i.size}) - R${i.price}`).join('\n');
             const total = calculateTotal();
-            const body = `Customer Details: \"\nName: ${name} \"\nPhone: ${phone}\"\nDelivery Address: ${address}\"\n \"\nOrder Items:\"\n${itemsList}\"\n\"\nTotal: R${total}\"\n\"\nThank you for your order!`;
-            window.location.href = `mailto: qhaweer@gmail.com?subject=QHAWEAR ONLINE ORDER&body=${encodeURIComponent(body)}`;
-            // Optional: Clear cart after
-            // cart = []; renderCart(); updateCartCount();
+            
+            const orderMessage = `Customer Details:
+Name: ${name}
+Phone: ${phone}
+Delivery Address: ${address}
+
+Order Items:
+${itemsList}
+
+Total: R${total}
+
+Thank you for your order!`;
+
+            // Send via email
+            const emailSubject = "QHAWEAR ONLINE ORDER";
+            window.location.href = `mailto:qhaweer@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(orderMessage)}`;
+
+            // Send via WhatsApp (after a short delay)
+            setTimeout(() => {
+                const whatsappNumber = "27768296508";
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderMessage)}`;
+                window.open(whatsappUrl, '_blank');
+            }, 500);
+
+            // Clear cart after
+            setTimeout(() => {
+                cart = []; 
+                renderCart(); 
+                updateCartCount();
+                alert("Order sent! Check your email and WhatsApp for confirmation.");
+            }, 1000);
         }
     </script>
 </body>
