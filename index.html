@@ -367,7 +367,7 @@
                 <div class="product-img-wrapper"><img src="Assets/Cotton/t10.jpeg"></div>
                 <div style="padding: 0 20px; text-align: center;">
                     <h3 class="heavy-title" style="font-size: 16px;">Cotton T-Shirt</h3>
-                    <p class="mono" style="color:var(--red);">R375.00</p>
+                    <p class="mono" style="color:var(--red);">R400.00</p>
                     <button class="add-to-cart-btn" onclick="openCottonCollection()">SHOP COTTON</button>
                 </div>
             </div>
@@ -375,7 +375,7 @@
                 <div class="product-img-wrapper"><img src="Assets/Acid wash/t1.jpeg"></div>
                 <div style="padding: 0 20px; text-align: center;">
                     <h3 class="heavy-title" style="font-size: 16px;">Acid Wash T-Shirt</h3>
-                    <p class="mono" style="color:var(--red);">R425.00</p>
+                    <p class="mono" style="color:var(--red);">R500.00</p>
                     <button class="add-to-cart-btn" onclick="openAcidWashCollection()">SHOP ACID WASH</button>
                 </div>
             </div>
@@ -401,6 +401,30 @@
                     <h3 class="heavy-title" style="font-size: 16px;">Socks</h3>
                     <p class="mono" style="color:var(--red);">R120.00</p>
                     <button class="add-to-cart-btn" onclick="openSocksCollection()">SHOP SOCKS</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/trackpants/trackpants.png"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Sweat Pants</h3>
+                    <p class="mono" style="color:var(--red);">COMING SOON</p>
+                    <button class="add-to-cart-btn" style="cursor: not-allowed; opacity: 0.5;" disabled>COMING SOON</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/signature/signature.png"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Signature Series</h3>
+                    <p class="mono" style="color:var(--red);">R650.00</p>
+                    <button class="add-to-cart-btn" onclick="openSignatureCollection()">SHOP SIGNATURE</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/neckless/neckless.png"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Round Neck</h3>
+                    <p class="mono" style="color:var(--red);">R500.00</p>
+                    <button class="add-to-cart-btn" onclick="openRoundneckCollection()">SHOP ROUND NECK</button>
                 </div>
             </div>
         </div>
@@ -498,7 +522,29 @@
             <div class="product-grid" id="socks-grid"></div>
         </div>
     </div>
+    <div id=\"sweatpants-modal\" style=\"display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; overflow-y:auto;\">
+        <div style=\"padding:40px; max-width:1400px; margin:40px auto;\">
+            <span style=\"cursor:pointer; font-size:28px; color:white; float:right;\" onclick="closeSweatpantsCollection()">✕</span>
+            <h2 style=\"color:white; font-size:48px; margin-bottom:40px; font-family:'Archivo Black', sans-serif;\">SWEAT PANTS COLLECTION</h2>
+            <div class=\"product-grid\" id=\"sweatpants-grid\"></div>
+        </div>
+    </div>
 
+    <div id=\"signature-modal\" style=\"display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; overflow-y:auto;\">
+        <div style=\"padding:40px; max-width:1400px; margin:40px auto;\">
+            <span style=\"cursor:pointer; font-size:28px; color:white; float:right;\" onclick="closeSignatureCollection()">✕</span>
+            <h2 style=\"color:white; font-size:48px; margin-bottom:40px; font-family:'Archivo Black', sans-serif;\">SIGNATURE COLLECTION</h2>
+            <div class=\"product-grid\" id=\"signature-grid\"></div>
+        </div>
+    </div>
+
+    <div id=\"roundneck-modal\" style=\"display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; overflow-y:auto;\">
+        <div style=\"padding:40px; max-width:1400px; margin:40px auto;\">
+            <span style=\"cursor:pointer; font-size:28px; color:white; float:right;\" onclick="closeRoundneckCollection()">✕</span>
+            <h2 style=\"color:white; font-size:48px; margin-bottom:40px; font-family:'Archivo Black', sans-serif;\">ROUND NECK COLLECTION</h2>
+            <div class=\"product-grid\" id=\"roundneck-grid\"></div>
+        </div>
+    </div>
     <!-- Cart Overlay -->
     <div id="cart-sidebar">
         <div class="cart-header">
@@ -549,25 +595,28 @@ let nextItemId = 0;
 
         // Collection Data
         const acidwashItems = [
-            { name: 'Acid Wash V2 Cream', image: 'Assets/Acid wash/t7 v3 green.jpeg', price: 425 },
-            { name: 'Acid Wash V5 Khaki', image: 'Assets/Acid wash/v5 khaki.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Black', image: 'Assets/Acid wash/t7 v3 black.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Red', image: 'Assets/Acid wash/t7 v3 red.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Cream', image: 'Assets/Acid wash/t7 v3 cream.jpeg', price: 425 },
-            { name: 'Acid Wash V3 Grey', image: 'Assets/Acid wash/v4 grey.jpeg', price: 425 },
+            { name: 'Acid Wash V2 Cream', image: 'Assets/Acid wash/t7 v3 green.jpeg', price: 500 },
+            { name: 'Acid Wash V5 Khaki', image: 'Assets/Acid wash/v5 khaki.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Black', image: 'Assets/Acid wash/t7 v3 black.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Red', image: 'Assets/Acid wash/t7 v3 red.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Cream', image: 'Assets/Acid wash/t7 v3 cream.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Grey', image: 'Assets/Acid wash/v4 grey.jpeg', price: 500 },
         ];
 
         const cottonItems = [
-            { name: 'Cotton V1', image: 'Assets/Cotton/co.png', price: 375 },
-            { name: 'Cotton V2', image: 'Assets/Cotton/t2.jpeg', price: 375 },
-            { name: 'Cotton V3', image: 'Assets/Cotton/t3.jpeg', price: 375 },
-            { name: 'Cotton V2-Alt', image: 'Assets/Cotton/t13.jpeg', price: 375 },
-            { name: 'Cotton V3-Alt', image: 'Assets/Cotton/t17.jpeg', price: 375 },
+            { name: 'Cotton V1', image: 'Assets/Cotton/co.png', price: 400 },
+            { name: 'Cotton V2', image: 'Assets/Cotton/t2.jpeg', price: 400 },
+            { name: 'Cotton V3', image: 'Assets/Cotton/t3.jpeg', price: 400 },
+            { name: 'Cotton V2-Alt', image: 'Assets/Cotton/t13.jpeg', price: 400 },
+            { name: 'Cotton V3-Alt', image: 'Assets/Cotton/t17.jpeg', price: 400 },
         ];
 
         const hoodieItems = [{ name: 'Hoodie V1', image: 'Assets/Jersey/WhatsApp Image 2026-05-04 at 08.51.23.jpeg', price: 650 }];
         const capItems = [{ name: 'Cap V1', image: 'Assets/Cap/cap1.jpeg', price: 250 }];
         const socksItems = [{ name: 'Socks V1', image: 'Assets/socks/socks.png', price: 120 }];
+        const sweatpantsItems = [{ name: 'Sweat Pants - Coming Soon', image: 'Assets/trackpants/trackpants.png', price: 0 }];
+        const signatureItems = [{ name: 'Signature Series', image: 'Assets/signature/signature.png', price: 650 }];
+        const roundneckItems = [{ name: 'Round Neck', image: 'Assets/neckless/neckless.png', price: 500 }];
 
         // Modal Logic
         function openAcidWashCollection() { renderCollection('acidwash-grid', acidwashItems); document.getElementById('acidwash-modal').style.display = 'block'; }
@@ -584,6 +633,15 @@ let nextItemId = 0;
 
         function openSocksCollection() { renderCollection('socks-grid', socksItems, ['One Size']); document.getElementById('socks-modal').style.display = 'block'; }
         function closeSocksCollection() { document.getElementById('socks-modal').style.display = 'none'; }
+
+        function openSweatpantsCollection() { renderCollection('sweatpants-grid', sweatpantsItems, ['One Size']); document.getElementById('sweatpants-modal').style.display = 'block'; }
+        function closeSweatpantsCollection() { document.getElementById('sweatpants-modal').style.display = 'none'; }
+
+        function openSignatureCollection() { renderCollection('signature-grid', signatureItems); document.getElementById('signature-modal').style.display = 'block'; }
+        function closeSignatureCollection() { document.getElementById('signature-modal').style.display = 'none'; }
+
+        function openRoundneckCollection() { renderCollection('roundneck-grid', roundneckItems); document.getElementById('roundneck-modal').style.display = 'block'; }
+        function closeRoundneckCollection() { document.getElementById('roundneck-modal').style.display = 'none'; }
 
         function renderCollection(gridId, items, sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL']) {
             const grid = document.getElementById(gridId);
