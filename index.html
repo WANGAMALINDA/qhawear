@@ -80,6 +80,71 @@
 
         .nav-links a:hover { color: white; }
 
+        /* Hamburger Menu */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger-btn span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .hamburger-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background: var(--black);
+            z-index: 1999;
+            padding: 40px;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #mobile-menu.active {
+            display: flex;
+        }
+
+        #mobile-menu a {
+            color: #ccc;
+            text-decoration: none;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        #mobile-menu a:hover {
+            color: white;
+        }
+
         /* Column 3: Socials + Cart on Right */
         .nav-right-group {
             display: flex;
@@ -196,6 +261,7 @@
         @media (max-width: 1000px) {
             header.site-nav { padding: 0 20px; }
             .nav-links { display: none; }
+            .hamburger-btn { display: flex; }
             .logo-text { flex: 1; }
             .nav-right-group { flex: 1; }
             .grid-2, .values-grid, .product-grid, .order-grid { grid-template-columns: 1fr; }
@@ -218,6 +284,13 @@
                 <a href="#footer">Contact</a>
             </nav>
 
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <!-- Right: Socials + Cart -->
             <div class="nav-right-group">
                 <div class="nav-socials-icons">
@@ -234,6 +307,14 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu">
+        <a href="#shop" onclick="closeMobileMenu()">Shop</a>
+        <a href="#manifesto" onclick="closeMobileMenu()">About</a>
+        <a href="#order" onclick="closeMobileMenu()">How to Order</a>
+        <a href="#footer" onclick="closeMobileMenu()">Contact</a>
+    </nav>
 
     <!-- Hero -->
     <section class="container hero">
@@ -435,6 +516,21 @@
     <script>
 let cart = [];
 let nextItemId = 0;
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const btn = document.querySelector('.hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const btn = document.querySelector('.hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.classList.remove('active');
+            menu.classList.remove('active');
+        }
 
         // Scroll Animation
         function checkScroll() {
