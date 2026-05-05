@@ -39,6 +39,29 @@
             z-index: 2000;
             padding: 0 40px;
         }
+                /* Mobile First Base */
+        .container { max-width: 1400px; margin: 50px auto; padding: 10px 20px; }
+        .section-padding { padding: 60px 0; }
+
+        /* Header - Mobile First */
+        header.site-nav {
+            background: var(--black);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2000;
+            padding: 0 20px;
+        }
+                @media (max-width: 1000px) {
+            header.site-nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .logo-text { flex: 1; }
+            .nav-right-group { flex: 1; }
+            .grid-2, .values-grid, .product-grid, .order-grid { grid-template-columns: 1fr; }
+        }
 
         .nav-container {
             display: flex;
