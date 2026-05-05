@@ -579,16 +579,17 @@ let nextItemId = 0;
         function openHoodieCollection() { renderCollection('hoodie-grid', hoodieItems); document.getElementById('hoodie-modal').style.display = 'block'; }
         function closeHoodieCollection() { document.getElementById('hoodie-modal').style.display = 'none'; }
 
-        function openCapCollection() { renderCollection('caps-grid', capItems); document.getElementById('caps-modal').style.display = 'block'; }
+        function openCapCollection() { renderCollection('caps-grid', capItems, ['One Size']); document.getElementById('caps-modal').style.display = 'block'; }
         function closeCapCollection() { document.getElementById('caps-modal').style.display = 'none'; }
 
-        function openSocksCollection() { renderCollection('socks-grid', socksItems); document.getElementById('socks-modal').style.display = 'block'; }
+        function openSocksCollection() { renderCollection('socks-grid', socksItems, ['One Size']); document.getElementById('socks-modal').style.display = 'block'; }
         function closeSocksCollection() { document.getElementById('socks-modal').style.display = 'none'; }
 
-        function renderCollection(gridId, items) {
+        function renderCollection(gridId, items, sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL']) {
             const grid = document.getElementById(gridId);
             grid.innerHTML = '';
             items.forEach(item => {
+                let sizeOptions = sizes.map(size => `<option value="${size}">${size}</option>`).join('');
                 grid.innerHTML += `
                     <div class="product-card" style="background:white;">
                         <div class="product-img-wrapper"><img src="${item.image}"></div>
@@ -596,13 +597,8 @@ let nextItemId = 0;
                             <h3 class="heavy-title" style="font-size: 14px;">${item.name}</h3>
                             <p class="mono" style="color:var(--red);">R${item.price}</p>
                             <select id="size-select-${nextItemId}" class="size-select" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; font-family:'Roboto Mono', monospace; font-size:12px;">
-                                <option value="">Select Size</option>
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="XXL">XXL</option>
+                                ${sizes.length === 1 ? '' : '<option value="">Select Size</option>'}
+                                ${sizeOptions}
                             </select>
                             <button class="add-to-cart-btn" onclick="addToCart('${item.name}', ${item.price}, this.previousElementSibling)">ADD TO CART</button>
                         </div>
