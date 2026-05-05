@@ -263,7 +263,8 @@
             .nav-links { display: none; }
             .hamburger-btn { display: flex; }
             .logo-text { flex: 1; }
-            .nav-right-group { flex: 1; }
+            .nav-right-group { flex: 1; justify-content: flex-end; }
+            .cart-btn-wrapper { display: none; }
             .grid-2, .values-grid, .product-grid, .order-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -314,6 +315,7 @@
         <a href="#manifesto" onclick="closeMobileMenu()">About</a>
         <a href="#order" onclick="closeMobileMenu()">How to Order</a>
         <a href="#footer" onclick="closeMobileMenu()">Contact</a>
+        <a href="#" onclick="toggleCart(); closeMobileMenu(); return false;" style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-bag-shopping"></i><span id="cart-count-mobile">MY CART (0)</span></a>
     </nav>
 
     <!-- Hero -->
@@ -632,6 +634,10 @@ let nextItemId = 0;
 
         function updateCartCount() {
             document.getElementById('cart-count').innerText = `MY CART (${cart.length})`;
+            const mobileCartEl = document.getElementById('cart-count-mobile');
+            if (mobileCartEl) {
+                mobileCartEl.innerText = `MY CART (${cart.length})`;
+            }
         }
 
         function calculateTotal() {
