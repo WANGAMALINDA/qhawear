@@ -94,6 +94,7 @@
         .hamburger-btn span {
             width: 25px;
             height: 2px;
+            margin:auto;
             background: white;
             transition: all 0.3s ease;
             display: block;
@@ -673,12 +674,40 @@ let nextItemId = 0;
                 alert("Please fill all details (name, phone, delivery address) and add items."); 
                 return; 
             }
-            let itemsList = cart.map(i => `• ${i.name} (Size: ${i.size}) - R${i.price}`).join('\\n');
+            
+            let itemsList = cart.map(i => `• ${i.name} (Size: ${i.size}) - R${i.price}`).join('\n');
             const total = calculateTotal();
-            const body = `Customer Details: \"\nName: ${name} \"\nPhone: ${phone}\"\nDelivery Address: ${address}\"\n \"\nOrder Items:\"\n${itemsList}\"\n\"\nTotal: R${total}\"\n\"\nThank you for your order!`;
-            window.location.href = `mailto: qhaweer@gmail.com?subject=QHAWEAR ONLINE ORDER&body=${encodeURIComponent(body)}`;
-            // Optional: Clear cart after
-            // cart = []; renderCart(); updateCartCount();
+            
+            const orderMessage = `Customer Details:
+Name: ${name}
+Phone: ${phone}
+Delivery Address: ${address}
+
+Order Items:
+${itemsList}
+
+Total: R${total}
+
+Thank you for your order!`;
+
+            // Send via email
+            const emailSubject = "QHAWEAR ONLINE ORDER";
+            window.location.href = `mailto:qhaweer@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(orderMessage)}`;
+
+            // Send via WhatsApp (after a short delay)
+            setTimeout(() => {
+                const whatsappNumber = "27768296508";
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderMessage)}`;
+                window.open(whatsappUrl, '_blank');
+            }, 500);
+
+            // Clear cart after
+            setTimeout(() => {
+                cart = []; 
+                renderCart(); 
+                updateCartCount();
+                alert("Order sent! Check your email and WhatsApp for confirmation.");
+            }, 1000);
         }
     </script>
 </body>
