@@ -372,7 +372,7 @@
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-img-wrapper"><img src="Assets/Acid wash/t1.jpeg"></div>
+                <div class="product-img-wrapper"><img src="Assets/Acid wash/t12.jpeg"></div>
                 <div style="padding: 0 20px; text-align: center;">
                     <h3 class="heavy-title" style="font-size: 16px;">Acid Wash T-Shirt</h3>
                     <p class="mono" style="color:var(--red);">R500.00</p>
@@ -385,6 +385,14 @@
                     <h3 class="heavy-title" style="font-size: 16px;">Winter Hoodie</h3>
                     <p class="mono" style="color:var(--red);">R650.00</p>
                     <button class="add-to-cart-btn" onclick="openHoodieCollection()">SHOP HOODIES</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/signature/t15.jpeg"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Signature Series</h3>
+                    <p class="mono" style="color:var(--red);">R650.00</p>
+                    <button class="add-to-cart-btn" onclick="openSignatureCollection()">SHOP SIGNATURE</button>
                 </div>
             </div>
             <div class="product-card">
@@ -403,28 +411,21 @@
                     <button class="add-to-cart-btn" onclick="openSocksCollection()">SHOP SOCKS</button>
                 </div>
             </div>
+
             <div class="product-card">
-                <div class="product-img-wrapper"><img src="Assets/trackpants/trackpants.png"></div>
-                <div style="padding: 0 20px; text-align: center;">
-                    <h3 class="heavy-title" style="font-size: 16px;">Sweat Pants</h3>
-                    <p class="mono" style="color:var(--red);">COMING SOON</p>
-                    <button class="add-to-cart-btn" style="cursor: not-allowed; opacity: 0.5;" disabled>COMING SOON</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-img-wrapper"><img src="Assets/signature/signature.png"></div>
-                <div style="padding: 0 20px; text-align: center;">
-                    <h3 class="heavy-title" style="font-size: 16px;">Signature Series</h3>
-                    <p class="mono" style="color:var(--red);">R650.00</p>
-                    <button class="add-to-cart-btn" onclick="openSignatureCollection()">SHOP SIGNATURE</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-img-wrapper"><img src="Assets/neckless/neckless.png"></div>
+                <div class="product-img-wrapper"><img src="Assets/neckless/neckless red.jpeg"></div>
                 <div style="padding: 0 20px; text-align: center;">
                     <h3 class="heavy-title" style="font-size: 16px;">Round Neck</h3>
                     <p class="mono" style="color:var(--red);">R500.00</p>
                     <button class="add-to-cart-btn" onclick="openRoundneckCollection()">SHOP ROUND NECK</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img-wrapper"><img src="Assets/trackpants/pants.jpeg"></div>
+                <div style="padding: 0 20px; text-align: center;">
+                    <h3 class="heavy-title" style="font-size: 16px;">Sweat Pants</h3>
+                    <p class="mono" style="color:var(--red);">COMING SOON</p>
+                    <button class="add-to-cart-btn" style="cursor: not-allowed; opacity: 0.5;" disabled>COMING SOON</button>
                 </div>
             </div>
         </div>
@@ -601,21 +602,33 @@ let nextItemId = 0;
             { name: 'Acid Wash V3 Red', image: 'Assets/Acid wash/t7 v3 red.jpeg', price: 500 },
             { name: 'Acid Wash V3 Cream', image: 'Assets/Acid wash/t7 v3 cream.jpeg', price: 500 },
             { name: 'Acid Wash V3 Grey', image: 'Assets/Acid wash/v4 grey.jpeg', price: 500 },
+            { name: 'Acid Wash V3 Grey', image: 'Assets/Acid wash/ t7 v3 white.jpeg', price: 500 },
         ];
 
         const cottonItems = [
             { name: 'Cotton V1', image: 'Assets/Cotton/co.png', price: 400 },
             { name: 'Cotton V2', image: 'Assets/Cotton/t2.jpeg', price: 400 },
             { name: 'Cotton V3', image: 'Assets/Cotton/t3.jpeg', price: 400 },
-            { name: 'Cotton V2-Alt', image: 'Assets/Cotton/t13.jpeg', price: 400 },
             { name: 'Cotton V3-Alt', image: 'Assets/Cotton/t17.jpeg', price: 400 },
         ];
 
         const hoodieItems = [{ name: 'Hoodie V1', image: 'Assets/Jersey/WhatsApp Image 2026-05-04 at 08.51.23.jpeg', price: 650 }];
+
         const capItems = [{ name: 'Cap V1', image: 'Assets/Cap/cap1.jpeg', price: 250 }];
+
         const socksItems = [{ name: 'Socks V1', image: 'Assets/socks/socks.png', price: 120 }];
-        const sweatpantsItems = [{ name: 'Sweat Pants - Coming Soon', image: 'Assets/trackpants/trackpants.png', price: 0 }];
-        const signatureItems = [{ name: 'Signature Series', image: 'Assets/signature/signature.png', price: 650 }];
+
+        const sweatpantsItems = [{ name: 'Sweat Pants - Coming Soon', image: 'Assets/trackpants/pants.jpeg', price: 0 }];
+
+        const signatureItems = [
+            { name: 'Signature Series', image: 'Assets/signature/Signature V1 red.jpeg', price: 650 },
+            { name: 'Signature Series', image: 'Assets/signature/Signature V1 black.jpeg', price: 650 },
+            { name: 'Signature Series', image: 'Assets/signature/Signature V1 cream.jpeg', price: 650 },
+            { name: 'Signature Series', image: 'Assets/signature/Signature V1 white.jpeg', price: 650 },
+            { name: 'Signature Series', image: 'Assets/signature/t16.jpeg', price: 650 },
+            { name: 'Signature Series', image: 'Assets/signature/t2.jpeg', price: 650 },
+        ];
+
         const roundneckItems = [{ name: 'Round Neck', image: 'Assets/neckless/neckless.png', price: 500 }];
 
         // Modal Logic
